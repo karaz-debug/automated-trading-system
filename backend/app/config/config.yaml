@@ -1,0 +1,39 @@
+# config/config.yaml
+
+brokers:
+  IBKR:
+    type: 'IBKR'
+    host: '127.0.0.1'
+    port: 7497
+    clientId: 3
+ 
+
+strategies:
+  - name: 'SMACrossoverStrategy'
+    symbols:
+      - symbol: 'EURUSD'
+        sec_type: 'CASH'
+      - symbol: 'GBPUSD'
+        sec_type: 'CASH'
+      - symbol: 'AAPL'
+        sec_type: 'STK'
+      - symbol: 'MSFT'
+        sec_type: 'STK'
+    timeframes:
+      - '1m'  # Primary timeframe
+    historical:
+      duration: '1 D'
+      bar_size: '1m'
+    params:
+      short_ma: 5    # Short-term SMA window
+      long_ma: 20    # Long-term SMA window
+
+risk_management:
+  risk_per_trade: 1  # Percentage of account balance to risk per trade
+  pip_value: 10       # Value per pip (for Forex)
+  max_daily_loss: 500 # Maximum loss per day
+  max_daily_trades: 10 # Maximum number of trades per day
+
+logging:
+  level: 'INFO'
+  file: 'logs/trading_system.log'
